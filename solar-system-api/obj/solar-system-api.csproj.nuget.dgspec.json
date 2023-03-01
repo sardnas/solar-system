@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\code\\solar-system\\solar-system-api\\solar-system-api.csproj": {}
+    "F:\\code\\Solar\\solar-system\\solar-system-api\\solar-system-api.csproj": {}
   },
   "projects": {
-    "C:\\code\\solar-system\\solar-system-api\\solar-system-api.csproj": {
+    "F:\\code\\Solar\\solar-system\\solar-system-api\\solar-system-api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\code\\solar-system\\solar-system-api\\solar-system-api.csproj",
+        "projectUniqueName": "F:\\code\\Solar\\solar-system\\solar-system-api\\solar-system-api.csproj",
         "projectName": "solar-system-api",
-        "projectPath": "C:\\code\\solar-system\\solar-system-api\\solar-system-api.csproj",
-        "packagesPath": "C:\\Users\\sandr\\.nuget\\packages\\",
-        "outputPath": "C:\\code\\solar-system\\solar-system-api\\obj\\",
+        "projectPath": "F:\\code\\Solar\\solar-system\\solar-system-api\\solar-system-api.csproj",
+        "packagesPath": "C:\\Users\\Emile Zyka\\.nuget\\packages\\",
+        "outputPath": "F:\\code\\Solar\\solar-system\\solar-system-api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\sandr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Emile Zyka\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -64,7 +64,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
