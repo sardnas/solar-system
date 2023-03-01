@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KbSmK6i8zuZFfcR1QyiyuVb7pT6FvtYj+HR6M4lQpv9B+pSMdA6MeKqvcgJvfXdT1RAS62exbX6mtdVVzanK7g==",
+  "dgSpecHash": "shcc+19SSv6bXZ1rXgDc/sDUGRLtuJQg03w0oCiBSHofqABESSvGYx7eLPby3vFxqSqSqUuazAZJ9i2TWRqaGg==",
   "success": true,
-  "projectFilePath": "C:\\code\\solar-system-api\\solar-system-api\\solar-system-api.csproj",
+  "projectFilePath": "C:\\code\\solar-system\\solar-system-api\\solar-system-api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sandr\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\sandr\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",

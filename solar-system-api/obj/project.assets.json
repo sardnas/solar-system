@@ -229,11 +229,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\code\\solar-system-api\\solar-system-api\\solar-system-api.csproj",
+      "projectUniqueName": "C:\\code\\solar-system\\solar-system-api\\solar-system-api.csproj",
       "projectName": "solar-system-api",
-      "projectPath": "C:\\code\\solar-system-api\\solar-system-api\\solar-system-api.csproj",
+      "projectPath": "C:\\code\\solar-system\\solar-system-api\\solar-system-api.csproj",
       "packagesPath": "C:\\Users\\sandr\\.nuget\\packages\\",
-      "outputPath": "C:\\code\\solar-system-api\\solar-system-api\\obj\\",
+      "outputPath": "C:\\code\\solar-system\\solar-system-api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\sandr\\AppData\\Roaming\\NuGet\\NuGet.Config",
