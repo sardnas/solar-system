@@ -1,0 +1,4 @@
+﻿COPY SolarData(Name, IsPlanet, Density, Gravity, MeanRadius, MassKg, Orbits)
+FROM 'C:\data\sol_data.csv'
+DELIMITER ','
+CSV HEADER;
