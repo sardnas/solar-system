@@ -27,27 +27,29 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 
-app.MapGet("api/solardata", (AppDBContext db) =>
+app.MapGet("api/solardata", async (AppDBContext db) =>
 {
-    return db.SolarData.ToList();
+    return await db.SolarData.ToListAsync();
 })
 .WithName("GetSolarData");
 
-app.MapGet("api/solardata/planets", (AppDBContext db) =>
+app.MapGet("api/solardata/planets", async (AppDBContext db) =>
 {
-    return db.SolarData.Where(x => x.IsPlanet == true).ToList();
+    var planets = db.SolarData.Where(x => x.IsPlanet == true);
+    return await planets.ToListAsync();
 })
 .WithName("GetPlanets");
 
-app.MapGet("api/solardata/orbits", (AppDBContext db, string name) =>
+app.MapGet("api/solardata/orbits", async (AppDBContext db, string name) =>
 {
-    return db.SolarData.Where(x => x.Orbit == name).ToList();
+    var orbits = db.SolarData.Where(x => x.Orbit == name);
+    return await orbits.ToListAsync();  
 })
 .WithName("GetOrbits");
 
-app.MapGet("api/solardata/{id}", (AppDBContext db, int id) =>
+app.MapGet("api/solardata/{id}", async (AppDBContext db, int id) =>
 {
-    return db.SolarData.Where(x => x.Id == id).ToList();
+    return await db.SolarData.FindAsync(id)
 })
 .WithName("GetSolarBody");
 
