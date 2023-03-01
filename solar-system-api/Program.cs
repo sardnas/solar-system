@@ -14,9 +14,6 @@ builder.Services.AddDbContext<AppDBContext>(options => options.UseNpgsql(Connect
 
 var app = builder.Build();
 
-app.UseCors(options => options.WithOrigins("http://localhost:5173")
-.AllowAnyMethod().AllowAnyHeader());
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -49,7 +46,7 @@ app.MapGet("api/solardata/orbits", async (AppDBContext db, string name) =>
 
 app.MapGet("api/solardata/{id}", async (AppDBContext db, int id) =>
 {
-    return await db.SolarData.FindAsync(id)
+    return await db.SolarData.FindAsync(id);
 })
 .WithName("GetSolarBody");
 
