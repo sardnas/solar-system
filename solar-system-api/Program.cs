@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using solar_system_api.Database;
+using solar_system_api.Products;
 using System.Drawing;
 using System.Text.Json;
 
@@ -9,7 +10,7 @@ var ConnectionString = builder.Configuration["ConnectionString"];
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddCors(); 
 builder.Services.AddDbContext<AppDBContext>(options => options.UseNpgsql(ConnectionString));
 
 var app = builder.Build();
@@ -26,31 +27,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-
-app.MapGet("api/solardata", async (AppDBContext db) =>
-{
-    return await db.SolarData.ToListAsync();
-})
-.WithName("GetSolarData");
-
-app.MapGet("api/solardata/planets", async (AppDBContext db) =>
-{
-    var planets = db.SolarData.Where(x => x.IsPlanet == true);
-    return await planets.ToListAsync();
-})
-.WithName("GetPlanets");
-
-app.MapGet("api/solardata/orbits", async (AppDBContext db, string name) =>
-{
-    var orbits = db.SolarData.Where(x => x.Orbit == name);
-    return await orbits.ToListAsync();  
-})
-.WithName("GetOrbits");
-
-app.MapGet("api/solardata/{id}", async (AppDBContext db, int id) =>
-{
-    return await db.SolarData.FindAsync(id)
-})
-.WithName("GetSolarBody");
+// Adding endpoints 
+app.AddSolarDataEndpoints();
 
 app.Run();
