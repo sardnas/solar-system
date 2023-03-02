@@ -4,36 +4,49 @@ import texture1 from './img/texture1.jpg';
 import texture2 from './img/texture2.jpg';
 import { CameraOrbitController } from './components/CameraOrbitController';
 import { Planet } from './components/Planet';
+import { InfoBox } from './components/InfoBox';
+import { useState } from 'react';
 
-function ThreeScene() {
+const PlanetScene = ({ texture, planetData }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  console.log(isOpen);
   return (
-    <Canvas>
-      <CameraOrbitController />
-      <ambientLight intensity={1} />
-      <pointLight position={[2, 2, 2]} intensity={2} />
-      <pointLight position={[-3, -3, 2]} />
-      <Planet texture={texture1} />
-    </Canvas>
-  );
-}
-
-function ThreeScene2() {
-  return (
-    <Canvas>
-      <CameraOrbitController />
-      <ambientLight intensity={1} />
-      <pointLight position={[2, 2, 2]} intensity={2} />
-      <pointLight position={[-3, -3, 2]} />
-      <Planet texture={texture2} />
-    </Canvas>
+    <>
+      {isOpen ? (
+        <>
+          <InfoBox />
+          <div onClick={() => setIsOpen(!isOpen)}>
+            <Canvas>
+              <CameraOrbitController />
+              <ambientLight intensity={1} />
+              <pointLight position={[2, 2, 2]} intensity={2} />
+              <pointLight position={[-3, -3, 2]} />
+              <Planet texture={texture} />
+            </Canvas>
+          </div>
+        </>
+      ) : (
+        <>
+          <div onClick={() => setIsOpen(!isOpen)}>
+            <Canvas>
+              <CameraOrbitController />
+              <ambientLight intensity={1} />
+              <pointLight position={[2, 2, 2]} intensity={2} />
+              <pointLight position={[-3, -3, 2]} />
+              <Planet texture={texture} />
+            </Canvas>
+          </div>
+        </>
+      )}
+    </>
   );
 }
 
 function App() {
   return (
     <div>
-      <ThreeScene />;
-      <ThreeScene2 />;
+      <PlanetScene texture={texture1} />;
+      <PlanetScene texture={texture2} />;
     </div>
   );
 }
