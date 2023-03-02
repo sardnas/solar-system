@@ -1,34 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { Canvas, useFrame, useLoader } from '@react-three/fiber';
+import { useEffect, useRef } from 'react';
+import './App.css';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { useThree } from '@react-three/fiber';
+import { TextureLoader } from 'three';
+import bg from './img/texture1.jpg';
 
-function App() {
-  const [count, setCount] = useState(0)
+const CameraOrbitController = () => {
+  const { camera, gl } = useThree();
+
+  useEffect(() => {
+    const controls = new OrbitControls(camera, gl.domElement);
+    return () => {
+      controls.dispose();
+    };
+  }, [camera, gl]);
+  return null;
+};
+
+function Box() {
+  const boxRef = useRef();
+  const colorMap = useLoader(TextureLoader, bg);
+
+  useFrame(({ clock }) => {
+    const a = clock.getElapsedTime();
+    boxRef.current.rotation.x = a;
+    boxRef.current.rotation.y = a;
+  });
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    <mesh ref={boxRef} onClick={() => console.log('clicked sphere')}>
+      <sphereGeometry args={[2]} />
+      <meshStandardMaterial map={colorMap} />
+    </mesh>
+  );
 }
 
-export default App
+function ThreeScene() {
+  return (
+    <Canvas>
+      <CameraOrbitController />
+      <ambientLight intensity={1} />
+      <pointLight position={[2, 2, 2]} intensity={2} />
+      <pointLight position={[-3, -3, 2]} />
+      <Box />
+    </Canvas>
+  );
+}
+
+function App() {
+  return <ThreeScene />;
+}
+
+export default App;
