@@ -32,7 +32,8 @@ export class SolarNavigator extends Component {
         //console.log(props.data);
         this.state = ({
             currentPlanet: [],
-            infoBox: false
+            infoBox: false,
+            mousePos: [0, 0]
         })
     }
 
