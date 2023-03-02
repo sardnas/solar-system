@@ -10,11 +10,17 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors(); 
 builder.Services.AddDbContext<AppDBContext>(options => options.UseNpgsql(ConnectionString));
+//
+
+builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
+{
+    builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+}));
+//
 
 var app = builder.Build();
 
-app.UseCors(options => options.WithOrigins("http://localhost:5173")
-.AllowAnyMethod().AllowAnyHeader());
+app.UseCors("corsapp");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

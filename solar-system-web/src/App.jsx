@@ -1,14 +1,14 @@
 import './App.css';
-import texture1 from './img/texture1.jpg';
-import texture2 from './img/texture2.jpg';
-import { PlanetScene } from './components/InfoBox';
+import { SolarNavigator } from './components/SolarNavigator';
+import { useState, useEffect } from 'react';
+import { Planets } from './Functions/Planets';
 
 
 function App() {
+  const planets = Planets().planets;
   return (
     <div>
-      <PlanetScene texture={texture1} />;
-      <PlanetScene texture={texture2} />;
+      <SolarNavigator data={planets} />;
     </div>
   );
 }
