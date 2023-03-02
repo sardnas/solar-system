@@ -12,8 +12,6 @@ export const Planets = () => {
     async function FetchPlanets() {
       try {
         let response = await GetPlanets();
-        console.log(response.status);
-
         if (response.status === 200) {
           let json = await response.json();
           setPlanets(json);
