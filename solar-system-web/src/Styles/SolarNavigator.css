@@ -1,11 +1,11 @@
 .spaceContainer {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    grid-auto-rows: minmax(10rem, auto);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  grid-auto-rows: minmax(10rem, auto);
 }
 
 .green {
-    width: 10rem;
-    block-size: fit-content;
+  width: 10rem;
+  block-size: fit-content;
 }
