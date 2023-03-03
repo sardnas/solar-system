@@ -11,6 +11,7 @@ import uranus from '../img/uranus.jpg';
 import venus from '../img/venus.jpg';
 
 import texture1 from '../img/texture1.jpg';
+import { FixedBody } from './FixedBody';
 
 export const PlanetScene = ({ data }) => {
     const sun = new Object();
@@ -53,7 +54,7 @@ export const PlanetScene = ({ data }) => {
                 <ambientLight intensity={1} />
                 <pointLight position={[2, 2, 2]} intensity={2} />
                 <pointLight position={[-3, -3, 2]} />
-                <Planet texture={venus} pos={[0, 0, 0]} size={1.2} planet={sun} />
+                <FixedBody texture={venus} pos={[0, 0, 0]} size={1.2} />
                 {data.map(element => { return <Planet texture={element.texture} pos={element.position} size={element.size} planet={element} /> })}
             </Canvas>
         </>

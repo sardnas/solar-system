@@ -42,8 +42,9 @@ export const SolarNavigator = () => {
     return (
         <>
             {planets ? (
-                <>
+                <><div>
                     <PlanetScene data={planets} />
+                </div>
                 </>
             ) : (
                 <h1>loading planets</h1>

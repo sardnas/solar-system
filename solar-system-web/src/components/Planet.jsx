@@ -17,8 +17,8 @@ export const Planet = ({ texture, pos, size, planet }) => {
   });
 
   const navigate = () => {
-    document.getElementById('1')?.scrollIntoView({ behavior: 'smooth' });
-    console.log(document.getElementById('1'));
+    //document.getElementById('1')?.scrollIntoView({ behavior: 'smooth' });
+    //console.log(document.getElementById('1'));
   }
   return (
     <mesh position={pos} ref={mesh} onClick={navigate} onPointerOver={(event) => setHover(true)}
