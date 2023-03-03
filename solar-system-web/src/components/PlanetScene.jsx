@@ -9,7 +9,7 @@ import neptune from '../img/neptune.jpg';
 import saturn from '../img/saturn.jpg';
 import uranus from '../img/uranus.jpg';
 import venus from '../img/venus.jpg';
-
+import { OrbitControls } from "@react-three/drei";
 import texture1 from '../img/texture1.jpg';
 import { FixedBody } from './FixedBody';
 
@@ -55,6 +55,7 @@ export const PlanetScene = ({ data }) => {
                 <pointLight position={[0, 0, 0]} intensity={4} />
                 <FixedBody texture={venus} pos={[0, 0, 0]} size={1.2} />
                 {data.map(element => { return <Planet texture={element.texture} pos={element.position} size={element.size} planet={element} /> })}
+                <OrbitControls />
             </Canvas>
         </>
     );
