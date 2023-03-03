@@ -1,20 +1,26 @@
 import { useFrame, useLoader } from '@react-three/fiber';
-import { useRef } from 'react';
+import React, { useRef, useState } from 'react'
 import { TextureLoader } from 'three';
+import texture2 from '../img/texture2.jpg';
 
-export const Planet = ({ texture, pos }) => {
-  const boxRef = useRef();
+export const Planet = ({ texture, pos, size, planet }) => {
+  const mesh = useRef();
   const colorMap = useLoader(TextureLoader, texture);
+  const colorMapHover = useLoader(TextureLoader, texture2);
+  const [hovered, setHover] = useState(false);
+  const [active, setActive] = useState(false);
+
   useFrame(({ clock }) => {
     const a = clock.getElapsedTime();
-    boxRef.current.rotation.x = a;
-    boxRef.current.rotation.y = a;
+    mesh.current.rotation.x = a;
+    mesh.current.rotation.y = a;
   });
 
   return (
-    <mesh position={pos} ref={boxRef} onClick={() => console.log('clicked sphere')}>
-      <sphereGeometry args={[0.7]} />
-      <meshStandardMaterial map={colorMap} />
+    <mesh position={pos} ref={mesh} onClick={() => console.log(planet)} onPointerOver={(event) => setHover(true)}
+      onPointerOut={(event) => setHover(false)}>
+      <sphereGeometry args={[size]} />
+      <meshStandardMaterial map={hovered ? colorMapHover : colorMap} />
     </mesh>
   );
 };
