@@ -8,8 +8,8 @@ function App() {
   const planets = Planets().planets;
   return (
     <div>
-      <Scene />
-      {/*<SolarNavigator data={planets} />;*/}
+      {/*<Scene />*/}
+      <SolarNavigator data={planets} />
     </div>
   );
 }

@@ -6,7 +6,7 @@ export async function GetPlanets() {
 }
 
 const publishedBasePath = 'https://';
-const localBasePath = 'https://localhost:44364';
+const localBasePath = 'https://localhost:7087';
 
 let requestBasePath = null;
 
