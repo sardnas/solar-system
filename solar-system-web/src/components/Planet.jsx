@@ -16,8 +16,12 @@ export const Planet = ({ texture, pos, size, planet }) => {
     mesh.current.rotation.y = a;
   });
 
+  const navigate = () => {
+    document.getElementById('1')?.scrollIntoView({ behavior: 'smooth' });
+    console.log(document.getElementById('1'));
+  }
   return (
-    <mesh position={pos} ref={mesh} onClick={() => console.log(planet)} onPointerOver={(event) => setHover(true)}
+    <mesh position={pos} ref={mesh} onClick={navigate} onPointerOver={(event) => setHover(true)}
       onPointerOut={(event) => setHover(false)}>
       <sphereGeometry args={[size]} />
       <meshStandardMaterial map={hovered ? colorMapHover : colorMap} />

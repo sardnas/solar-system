@@ -37,13 +37,13 @@ export const SolarNavigator = () => {
         }
     }, [shouldFetchPlanets, planets]);
 
+    console.log(errorFetchingPlanets);
+
     return (
         <>
             {planets ? (
                 <>
-                    <div>
-                        <PlanetScene data={planets} />
-                    </div>
+                    <PlanetScene data={planets} />
                 </>
             ) : (
                 <h1>loading planets</h1>
