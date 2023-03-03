@@ -38,16 +38,16 @@ export class SolarNavigator extends Component {
     }
 
     updateContent = (planet) => {
-        this.setState({ currentPlanet: planet });
+        //this.setState({ currentPlanet: planet });
         //console.log(this.state.currentPlanet);
     }
 
     handleOnClick = (planet) => {
         this.setState({ currentPlanet: planet });
-        console.log(this.state.currentPlanet);
+        //console.log(this.state.currentPlanet);
         if (!this.infoBox) {
             this.setState({ infoBox: true });
-            console.log(this.state.infoBox);
+            //console.log(this.state.infoBox);
         }
     }
 
@@ -58,9 +58,9 @@ export class SolarNavigator extends Component {
     render() {
         return (
             <>
-                {this.props.data ? (
+                {this.props.data ? (<>
+                    {this.state.infoBox ? (<><div onClick={() => this.closeInfoBox()}><InfoBox planet={this.state.currentPlanet} /></div></>) : (<></>)}
                     <div className='spaceContainer'>
-                        {this.state.infoBox ? (<><div onClick={() => this.closeInfoBox()}><InfoBox planet={this.state.currentPlanet} /></div></>) : (<></>)}
                         {this.props.data.map(element => {
                             return (
                                 <div>
@@ -72,6 +72,7 @@ export class SolarNavigator extends Component {
                         }
                         )}
                     </div>
+                </>
                 ) : (
                     <><p>loading</p></>
                 )}

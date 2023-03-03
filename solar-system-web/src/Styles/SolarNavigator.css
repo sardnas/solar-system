@@ -3,6 +3,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     grid-auto-rows: minmax(10rem, auto);
+    width: 75%;
 }
 
 .planetHolder {
