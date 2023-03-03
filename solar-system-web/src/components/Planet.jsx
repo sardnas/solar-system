@@ -2,10 +2,9 @@ import { useFrame, useLoader } from '@react-three/fiber';
 import { useRef } from 'react';
 import { TextureLoader } from 'three';
 
-export const Planet = ({ texture }) => {
+export const Planet = ({ texture, pos }) => {
   const boxRef = useRef();
   const colorMap = useLoader(TextureLoader, texture);
-
   useFrame(({ clock }) => {
     const a = clock.getElapsedTime();
     boxRef.current.rotation.x = a;
@@ -13,8 +12,8 @@ export const Planet = ({ texture }) => {
   });
 
   return (
-    <mesh ref={boxRef} onClick={() => console.log('clicked sphere')}>
-      <sphereGeometry args={[2]} />
+    <mesh position={pos} ref={boxRef} onClick={() => console.log('clicked sphere')}>
+      <sphereGeometry args={[0.7]} />
       <meshStandardMaterial map={colorMap} />
     </mesh>
   );

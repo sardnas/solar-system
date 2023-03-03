@@ -10,3 +10,9 @@
     width: 10rem;
     block-size: fit-content;
 }
+
+.screen {
+    background-color: black;
+    height: 100%;
+    overflow: visible;
+}

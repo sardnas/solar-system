@@ -1,7 +1,12 @@
+/*
 import { Component } from 'react';
 import { PlanetScene } from './PlanetScene';
+*/
 import '../Styles/SolarNavigator.css';
-
+import { GetPlanets } from '../Api';
+import { useState, useEffect } from 'react';
+import { PlanetScene } from './PlanetScene';
+/*
 import earth from '../img/earth.jpg';
 import jupiter from '../img/jupiter.jpg';
 import mars from '../img/mars.jpg';
@@ -13,23 +18,76 @@ import venus from '../img/venus.jpg';
 
 import texture1 from '../img/texture1.jpg';
 import { InfoBox } from './InfoBox';
+*/
+export const SolarNavigator = () => {
+    const [shouldFetchPlanets, setShouldFetchPlanets] = useState(true);
+    const [errorFetchingPlanets, setErrorFetchingPlanets] = useState(false);
+    const [planets, setPlanets] = useState(null);
 
+    useEffect(() => {
+        async function FetchPlanets() {
+            try {
+                let response = await GetPlanets();
+                if (response.status === 200) {
+                    let json = await response.json();
+                    setPlanets(json);
+                } else if (response.status === 400) {
+                    alert(
+                        "request was invalid because of missing or invalid input"
+                    );
+                    setErrorFetchingPlanets(true); //set error value
+                } else {
+                    alert("An unknown error occured");
+                    setErrorFetchingPlanets(true); //set error value
+                }
+            } catch (e) {
+                console.error("There was an error when fetching the planets! :-(");
+                console.error(e);
+                setErrorFetchingPlanets(true); //set error value
+            }
+        }
 
+        if (shouldFetchPlanets) {
+            setShouldFetchPlanets(false);
+            FetchPlanets();
+        }
+    }, [shouldFetchPlanets, planets]);
+
+    //console.log(errorFetchingPlanets);
+    //console.log(planets);
+    return (
+        <>
+            {planets ? (
+                <>
+                    <div>
+                        <PlanetScene data={planets} />
+                    </div>
+                </>
+            ) : (
+                <h1>loading planets</h1>
+            )}
+        </>);
+
+    /*
+
+    return (
+        <>
+            <h1>welcome</h1>;
+            {planets ? (
+                <>
+                    <h1>planets: </h1>
+                    {planets.map(element => { return <div>test</div> })}
+                </>
+            ) : (
+                <h1>loading</h1>
+            )};
+        </>
+    );*/
+}
+/*
 export class SolarNavigator extends Component {
     constructor(props) {
         super(props);
-        if (props.data) {
-            props.data[0].texture = uranus;
-            props.data[1].texture = texture1;
-            props.data[2].texture = neptune;
-            props.data[3].texture = jupiter;
-            props.data[4].texture = mars;
-            props.data[5].texture = mercury;
-            props.data[6].texture = saturn;
-            props.data[7].texture = earth;
-            props.data[8].texture = venus;
-        }
-        //console.log(props.data);
         this.state = ({
             currentPlanet: [],
             infoBox: false,
@@ -39,7 +97,7 @@ export class SolarNavigator extends Component {
 
     updateContent = (planet) => {
         //this.setState({ currentPlanet: planet });
-        //console.log(this.state.currentPlanet);
+        //console.log(this.state.currentPlanet)
     }
 
     handleOnClick = (planet) => {
@@ -47,7 +105,7 @@ export class SolarNavigator extends Component {
         //console.log(this.state.currentPlanet);
         if (!this.infoBox) {
             this.setState({ infoBox: true });
-            //console.log(this.state.infoBox);
+            //console.log(this.state.infoBox)
         }
     }
 
@@ -61,16 +119,7 @@ export class SolarNavigator extends Component {
                 {this.props.data ? (<>
                     {this.state.infoBox ? (<><div onClick={() => this.closeInfoBox()}><InfoBox planet={this.state.currentPlanet} /></div></>) : (<></>)}
                     <div className='spaceContainer'>
-                        {this.props.data.map(element => {
-                            return (
-                                <div>
-                                    <div className='planetHolder' onMouseOver={() => this.updateContent(element)} onClick={() => this.handleOnClick(element)}>
-                                        <PlanetScene texture={element.texture} />
-                                    </div>
-                                </div>
-                            )
-                        }
-                        )}
+                        <div planets={Planets().planets} />
                     </div>
                 </>
                 ) : (
@@ -81,4 +130,4 @@ export class SolarNavigator extends Component {
     }
 }
 
-export default { SolarNavigator };
+export default { SolarNavigator };*/
