@@ -52,8 +52,7 @@ export const PlanetScene = ({ data }) => {
             <Canvas>
                 <CameraOrbitController />
                 <ambientLight intensity={1} />
-                <pointLight position={[2, 2, 2]} intensity={2} />
-                <pointLight position={[-3, -3, 2]} />
+                <pointLight position={[0, 0, 0]} intensity={4} />
                 <FixedBody texture={venus} pos={[0, 0, 0]} size={1.2} />
                 {data.map(element => { return <Planet texture={element.texture} pos={element.position} size={element.size} planet={element} /> })}
             </Canvas>
