@@ -1,10 +1,17 @@
 import { useRef } from 'react';
 import '../Styles/InfoBox.css';
 import { Scrollbar } from 'react-scrollbars-custom';
+import { useState, useEffect } from 'react';
 
 export const InfoBox = (data) => {
-    const handleOnClick = () => {
-        console.log(data.planet);
+    const [active, setActive] = useState(false);
+    const [activeSatellite, setActiveSatellite] = useState();
+    const handleOnClick = (satellite) => {
+        console.log(satellite);
+        setActiveSatellite([satellite.name, satellite.gravity, satellite.mass]);
+        if (!active) {
+            setActive(true);
+        }
     }
     return (
         <>
@@ -16,9 +23,21 @@ export const InfoBox = (data) => {
                     <p>Radius: {data.planet.meanRadius}</p>
                     <p>Mass: {data.planet.massKg} kg</p>
                     <p>Satellites: {data.satellites.length}</p>
-                    {data.satellites.map(element => { return (<div onClick={handleOnClick}>{element.name}</div>); })}
+                    {data.satellites.map(element => { return (<div className='cursor' onClick={() => handleOnClick(element)}>{element.name}</div>); })}
                 </Scrollbar>
             </div>
+            {active ? (
+                <>
+                    <div onClick={() => setActive(false)} className='satelliteBox'>
+                        <h1>{activeSatellite[0]}</h1>
+                        <p>Mass: {activeSatellite[2]} kg</p>
+                        <p>Gravity: {activeSatellite[1]}</p>
+                    </div>
+
+                </>
+            ) : (
+                <> </>
+            )}
         </>
     );
 };
