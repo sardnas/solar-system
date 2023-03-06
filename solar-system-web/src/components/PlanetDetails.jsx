@@ -14,9 +14,8 @@ import { OrbitFactory } from '../utils/OrbitDataFactory';
 import { textures as PlanetTextures } from '../utils/Textures';
 import { Html } from '@react-three/drei';
 import { AiOutlineHome } from 'react-icons/ai';
-import Cookies from "universal-cookie";
+import Cookies from 'universal-cookie';
 import { InfoBox } from './InfoBox';
-
 
 export default function PlanetDetails() {
   const cookies = new Cookies();
@@ -44,10 +43,9 @@ export default function PlanetDetails() {
 
   return (
     <>
-
       <AiOutlineHome className='home-btn' onClick={backToHome} />
       <InfoBox planet={mainPlanetData} satellites={planetData}></InfoBox>
-      <Canvas camera={{ position: [0, 20, 25], fov: 45 }}>
+      <Canvas camera={{ position: [0, 60, 80], fov: 80 }}>
         <Suspense fallback={null}>
           <MainPlanet
             planetTexture={

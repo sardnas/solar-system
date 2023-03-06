@@ -96,6 +96,7 @@ export const PlanetScene = ({ data }) => {
               rotationSpeed={Math.random() * (0.03 - 0.01) + 0.03}
               xRadius={element.xRadius}
               zRadius={element.zRadius}
+              offset={Math.random() * (2 * Math.PI - 0 + 2 * Math.PI)}
             />
           );
         })}

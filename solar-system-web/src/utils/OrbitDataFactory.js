@@ -10,7 +10,7 @@ function OrbitFactory(data) {
       zRadius: zRadius,
       size: Math.random() * (2 - 1) + 1,
       speed: ((Math.random() * (1 - 0.02) + 1) / zRadius) * 15,
-      offset: 3,
+      offset: Math.random() * (2 * Math.PI - 0 + 2 * Math.PI),
       rotationSpeed: Math.random() * (0.03 - 0.01) + 0.03,
       name: element.name,
       gravity: element.gravity,

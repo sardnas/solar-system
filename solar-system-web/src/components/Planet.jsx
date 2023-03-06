@@ -4,7 +4,7 @@ import { TextureLoader } from 'three';
 import { FlyControls, Html } from '@react-three/drei';
 import '../Styles/Planet.css';
 import { useNavigate } from 'react-router-dom';
-import Cookies from "universal-cookie";
+import Cookies from 'universal-cookie';
 import texture2 from '../img/sun.jpg';
 
 export const Planet = ({
@@ -16,6 +16,7 @@ export const Planet = ({
   rotationSpeed,
   xRadius,
   zRadius,
+  offset,
 }) => {
   const navigate = useNavigate();
   const cookies = new Cookies();
@@ -26,15 +27,15 @@ export const Planet = ({
   const [active, setActive] = useState(false);
 
   cookies.set(`${planet.name}Info`, planet, {
-    path: "/",
-    sameSite: "none",
+    path: '/',
+    sameSite: 'none',
     secure: true,
   });
 
   const handleClick = () => navigate(`/planet/${planet.name}`);
 
   useFrame(({ clock }) => {
-    const t = clock.getElapsedTime() * speed;
+    const t = clock.getElapsedTime() * speed + offset;
     const x = xRadius * Math.sin(t);
     const z = zRadius * Math.cos(t);
     mesh.current.position.x = x;
@@ -46,7 +47,8 @@ export const Planet = ({
     <>
       {hovered ? (
         <>
-          <mesh position={[mesh.current.position.x, 0, mesh.current.position.z]}>
+          <mesh
+            position={[mesh.current.position.x, 0, mesh.current.position.z]}>
             <Html>
               <div className='label'>{planet.name}</div>
             </Html>
