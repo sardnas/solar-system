@@ -1,11 +1,14 @@
 import { useFrame, useLoader } from '@react-three/fiber';
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState } from 'react';
 import { TextureLoader } from 'three';
 import texture2 from '../img/texture2.jpg';
-import { Html } from "@react-three/drei";
+import { FlyControls, Html } from '@react-three/drei';
 import '../Styles/Planet.css';
+import { useNavigate } from 'react-router-dom';
 
 export const Planet = ({ texture, pos, size, planet }) => {
+  const navigate = useNavigate();
+  const handleClick = () => navigate(`/planet/${planet.name}`);
   const mesh = useRef();
   const colorMap = useLoader(TextureLoader, texture);
   const colorMapHover = useLoader(TextureLoader, texture2);
@@ -18,14 +21,29 @@ export const Planet = ({ texture, pos, size, planet }) => {
     mesh.current.rotation.y = a;
   });
 
-  const handleOnClick = () => {
+  const navigateClick = () => {
+    //`/planet/${planet.name}`
     //document.getElementById('1')?.scrollIntoView({ behavior: 'smooth' });
     //console.log(document.getElementById('1'));
-  }
+  };
   return (
     <>
-      {hovered ? (<><mesh position={[pos[0], pos[1] + 2, pos[2]]}><Html><div className='label'>{planet.name}</div></Html></mesh></>) : (<></>)}
-      <mesh position={pos} ref={mesh} onClick={handleOnClick} onPointerOver={(event) => setHover(true)}
+      {hovered ? (
+        <>
+          <mesh position={[pos[0], pos[1] + 2, pos[2]]}>
+            <Html>
+              <div className='label'>{planet.name}</div>
+            </Html>
+          </mesh>
+        </>
+      ) : (
+        <></>
+      )}
+      <mesh
+        position={pos}
+        ref={mesh}
+        onClick={handleClick}
+        onPointerOver={(event) => setHover(true)}
         onPointerOut={(event) => setHover(false)}>
         <sphereGeometry args={[size]} />
         <meshStandardMaterial map={hovered ? colorMapHover : colorMap} />

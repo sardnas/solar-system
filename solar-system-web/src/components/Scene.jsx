@@ -6,6 +6,7 @@ import venusbg from '../img/venus.jpg';
 import mercurybg from '../img/mercury.jpg';
 import saturnbg from '../img/saturn.jpg';
 
+/*
 const Planet = () => {
   const textureLoader = new THREE.TextureLoader();
 
@@ -100,3 +101,5 @@ export const Scene = () => {
     </div>
   );
 };
+
+*/
