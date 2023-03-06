@@ -6,7 +6,16 @@ import '../Styles/Planet.css';
 import { useNavigate } from 'react-router-dom';
 import texture2 from '../img/sun.jpg';
 
-export const Planet = ({ texture, pos, size, planet }) => {
+export const Planet = ({
+  texture,
+  pos,
+  size,
+  planet,
+  speed,
+  rotationSpeed,
+  xRadius,
+  zRadius,
+}) => {
   const navigate = useNavigate();
   const handleClick = () => navigate(`/planet/${planet.name}`);
   const mesh = useRef();
@@ -16,16 +25,14 @@ export const Planet = ({ texture, pos, size, planet }) => {
   const [active, setActive] = useState(false);
 
   useFrame(({ clock }) => {
-    const a = clock.getElapsedTime();
-    mesh.current.rotation.x = a;
-    mesh.current.rotation.y = a;
+    const t = clock.getElapsedTime() * speed;
+    const x = xRadius * Math.sin(t);
+    const z = zRadius * Math.cos(t);
+    mesh.current.position.x = x;
+    mesh.current.position.z = z;
+    mesh.current.rotation.y += rotationSpeed;
   });
 
-  const navigateClick = () => {
-    //`/planet/${planet.name}`
-    //document.getElementById('1')?.scrollIntoView({ behavior: 'smooth' });
-    //console.log(document.getElementById('1'));
-  };
   return (
     <>
       {hovered ? (
