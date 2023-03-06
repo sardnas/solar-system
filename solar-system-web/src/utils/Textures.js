@@ -11,43 +11,43 @@ import saturn from '../img/saturn.jpg';
 
 export const textures = [
   {
-    name: 'sun',
+    name: 'Sun',
     img: sun,
   },
   {
-    name: 'mercury',
+    name: 'Mercury',
     img: mercury,
   },
   {
-    name: 'venus',
+    name: 'Venus',
     img: venus,
   },
   {
-    name: 'earth',
+    name: 'Earth',
     img: earth,
   },
   {
-    name: 'mars',
+    name: 'Mars',
     img: mars,
   },
   {
-    name: 'jupiter',
+    name: 'Jupiter',
     img: jupiter,
   },
   {
-    name: 'saturn',
+    name: 'Saturn',
     img: saturn,
   },
   {
-    name: 'uranus',
+    name: 'Uranus',
     img: uranus,
   },
   {
-    name: 'neptune',
+    name: 'Neptune',
     img: neptune,
   },
   {
-    name: 'moon',
+    name: 'Moon',
     img: moon,
   },
 ];

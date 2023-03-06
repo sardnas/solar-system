@@ -13,3 +13,11 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.card {
+  background-color: blueviolet;
+  height: 20rem;
+  position: absolute;
+  top: 90%;
+  right: 90%;
+}

@@ -2,56 +2,61 @@ import React, { Suspense } from 'react';
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import { CameraOrbitController } from './CameraOrbitController';
 import * as THREE from 'three';
-import marsTexture from '../img/mars.jpg';
 import moonTexture from '../img/moon.jpg';
+import moonTexture1 from '../img/moonRed.jpg';
+import moonTexture2 from '../img/moonBlue.jpg';
+import marsTexture from '../img/mars.jpg';
 import '../Styles/PlanetDetails.css';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { GetOrbitsByPlanetName } from '../Api';
-/*
-          {planetData.map((planet) => (
-            <Planet planet={planet} key={planet.id} />
-          ))}
-*/
+import { OrbitFactory } from '../utils/OrbitDataFactory';
+import { textures as PlanetTextures } from '../utils/Textures';
+import { Html } from '@react-three/drei';
 
 export default function PlanetDetails() {
+  const moonText = [moonTexture, moonTexture1, moonTexture2];
   const params = useParams();
   const [orbitData, setOrbitData] = useState(null);
+  const [planetData, setPlanetData] = useState([]);
+  const planetName = params.Name;
 
   useEffect(() => {
     async function getOrbits() {
-      await GetOrbitsByPlanetName(params.Name).then((res) =>
-        res.json().then((json) => setOrbitData(json))
+      await GetOrbitsByPlanetName(planetName).then((res) =>
+        res.json().then((json) => {
+          setOrbitData(json);
+          setPlanetData(OrbitFactory(json));
+        })
       );
     }
     getOrbits();
   }, []);
 
-  console.log(orbitData);
-
   return (
     <>
       <Canvas camera={{ position: [0, 20, 25], fov: 45 }}>
         <Suspense fallback={null}>
-          <MainPlanet />
-          <Planet
-            xRadius={40}
-            zRadius={20}
-            size={1}
-            speed={0.5}
-            offset={4}
-            rotationSpeed={0.02}
-            textureMap={moonTexture}
+          <MainPlanet
+            planetTexture={
+              PlanetTextures.filter(
+                (PlanetTextures) => PlanetTextures.name === planetName
+              )[0].img
+            }
           />
-          <Planet
-            xRadius={60}
-            zRadius={30}
-            size={2}
-            speed={0.3}
-            offset={3}
-            rotationSpeed={0.02}
-            textureMap={moonTexture}
-          />
+          {planetData.map((p) => (
+            <Planet
+              key={p.id}
+              xRadius={p.xRadius}
+              zRadius={p.zRadius}
+              size={p.size}
+              speed={p.speed}
+              offset={p.offset}
+              rotationSpeed={p.rotationSpeed}
+              textureMap={moonText[Math.round(Math.random() * 2)]}
+              name={p.name}
+            />
+          ))}
           <Lights />
           <CameraOrbitController />
         </Suspense>
@@ -60,8 +65,8 @@ export default function PlanetDetails() {
   );
 }
 
-function MainPlanet() {
-  const texture = useLoader(THREE.TextureLoader, marsTexture);
+function MainPlanet({ planetTexture }) {
+  const texture = useLoader(THREE.TextureLoader, planetTexture);
   return (
     <mesh>
       <sphereGeometry args={[5, 32, 32]} />
@@ -78,9 +83,13 @@ const Planet = ({
   offset,
   rotationSpeed,
   textureMap,
+  name,
 }) => {
+  const [hovered, setHover] = useState(false);
+  const [active, setActive] = useState(false);
   const planetRef = React.useRef();
   const texture = useLoader(THREE.TextureLoader, textureMap);
+  const hoveredTexture = useLoader(THREE.TextureLoader, marsTexture);
   useFrame(({ clock }) => {
     const t = clock.getElapsedTime() * speed + offset;
     const x = xRadius * Math.sin(t);
@@ -92,9 +101,41 @@ const Planet = ({
 
   return (
     <>
-      <mesh ref={planetRef}>
+      {hovered ? (
+        <>
+          <mesh
+            position={[
+              planetRef.current.position.x,
+              0,
+              planetRef.current.position.z,
+            ]}>
+            <Html>
+              <div className='label'>{name}</div>
+            </Html>
+          </mesh>
+        </>
+      ) : (
+        <> </>
+      )}
+      {active ? (
+        <>
+          <Html>
+            <div className='card'>
+              <h1>{name}</h1>
+            </div>
+          </Html>
+        </>
+      ) : (
+        <> </>
+      )}
+
+      <mesh
+        ref={planetRef}
+        onClick={() => setActive(!active)}
+        onPointerOver={(event) => setHover(true)}
+        onPointerOut={(event) => setHover(false)}>
         <sphereGeometry args={[size, 32, 32]} />
-        <meshStandardMaterial map={texture} />
+        <meshStandardMaterial map={hovered ? hoveredTexture : texture} />
       </mesh>
       <Ecliptic xRadius={xRadius} zRadius={zRadius} />
     </>
