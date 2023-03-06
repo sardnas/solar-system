@@ -1,10 +1,10 @@
 import { useFrame, useLoader } from '@react-three/fiber';
 import React, { useRef, useState } from 'react';
 import { TextureLoader } from 'three';
-import texture2 from '../img/texture2.jpg';
 import { FlyControls, Html } from '@react-three/drei';
 import '../Styles/Planet.css';
 import { useNavigate } from 'react-router-dom';
+import texture2 from '../img/sun.jpg';
 
 export const Planet = ({ texture, pos, size, planet }) => {
   const navigate = useNavigate();

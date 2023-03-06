@@ -5,7 +5,9 @@ import * as THREE from 'three';
 import marsTexture from '../img/mars.jpg';
 import moonTexture from '../img/moon.jpg';
 import '../Styles/PlanetDetails.css';
-
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { GetOrbitsByPlanetName } from '../Api';
 /*
           {planetData.map((planet) => (
             <Planet planet={planet} key={planet.id} />
@@ -13,6 +15,20 @@ import '../Styles/PlanetDetails.css';
 */
 
 export default function PlanetDetails() {
+  const params = useParams();
+  const [orbitData, setOrbitData] = useState(null);
+
+  useEffect(() => {
+    async function getOrbits() {
+      await GetOrbitsByPlanetName(params.Name).then((res) =>
+        res.json().then((json) => setOrbitData(json))
+      );
+    }
+    getOrbits();
+  }, []);
+
+  console.log(orbitData);
+
   return (
     <>
       <Canvas camera={{ position: [0, 20, 25], fov: 45 }}>

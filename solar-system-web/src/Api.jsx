@@ -5,6 +5,13 @@ export async function GetPlanets() {
   });
 }
 
+//get orbits based on name
+export async function GetOrbitsByPlanetName(planetname) {
+  return await fetch(
+    GetBasePath() + `/api/solardata/orbits?name=${planetname}`
+  );
+}
+
 const publishedBasePath = 'https://';
 //emil 44364
 const localBasePath = 'https://localhost:44364';

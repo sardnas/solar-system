@@ -2,7 +2,6 @@ import './App.css';
 import PlanetDetails from './components/PlanetDetails';
 import { SolarNavigator } from './components/SolarNavigator';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
 function App() {
   return (
     <BrowserRouter>
