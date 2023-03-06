@@ -1,6 +1,7 @@
 * {
   box-sizing: border-box;
 }
+
 body {
   margin: 0;
 }
@@ -26,6 +27,10 @@ body {
   width: 35px;
   height: 35px;
   margin: 8px;
+  position: absolute;
+  top: 2%;
+  left: 2%;
+  z-index: 1000;
 }
 
 .home-btn:hover {

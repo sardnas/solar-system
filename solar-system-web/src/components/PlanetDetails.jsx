@@ -14,8 +14,12 @@ import { OrbitFactory } from '../utils/OrbitDataFactory';
 import { textures as PlanetTextures } from '../utils/Textures';
 import { Html } from '@react-three/drei';
 import { AiOutlineHome } from 'react-icons/ai';
+import Cookies from "universal-cookie";
+import { InfoBox } from './InfoBox';
+
 
 export default function PlanetDetails() {
+  const cookies = new Cookies();
   const moonText = [moonTexture, moonTexture1, moonTexture2];
   const params = useParams();
   const navigate = useNavigate();
@@ -23,6 +27,8 @@ export default function PlanetDetails() {
   const [orbitData, setOrbitData] = useState(null);
   const [planetData, setPlanetData] = useState([]);
   const planetName = params.Name;
+
+  const mainPlanetData = cookies.get(`${planetName}Info`);
 
   useEffect(() => {
     async function getOrbits() {
@@ -38,7 +44,9 @@ export default function PlanetDetails() {
 
   return (
     <>
+
       <AiOutlineHome className='home-btn' onClick={backToHome} />
+      <InfoBox planet={mainPlanetData} satellites={planetData}></InfoBox>
       <Canvas camera={{ position: [0, 20, 25], fov: 45 }}>
         <Suspense fallback={null}>
           <MainPlanet
@@ -54,7 +62,7 @@ export default function PlanetDetails() {
               xRadius={p.xRadius}
               zRadius={p.zRadius}
               size={p.size}
-              speed={p.speed}
+              speed={p.speed / 3}
               offset={p.offset}
               rotationSpeed={p.rotationSpeed}
               textureMap={moonText[Math.round(Math.random() * 2)]}
@@ -121,18 +129,6 @@ const Planet = ({
       ) : (
         <> </>
       )}
-      {active ? (
-        <>
-          <Html>
-            <div className='card'>
-              <h1>{name}</h1>
-            </div>
-          </Html>
-        </>
-      ) : (
-        <> </>
-      )}
-
       <mesh
         ref={planetRef}
         onClick={() => setActive(!active)}

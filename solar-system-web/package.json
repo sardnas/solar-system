@@ -17,7 +17,9 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
     "react-router-dom": "^6.8.2",
-    "three": "^0.150.1"
+    "react-scrollbars-custom": "^4.1.1",
+    "three": "^0.150.1",
+    "universal-cookie": "^4.0.4"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

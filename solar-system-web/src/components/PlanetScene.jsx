@@ -75,6 +75,8 @@ export const PlanetScene = ({ data }) => {
   data[2].zRadius = 40; //neptune
   data[1].zRadius = 45; // pluto
 
+  data.splice(1, 1);
+
   return (
     <>
       <Canvas camera={{ position: [0, 55, 65], fov: 60 }}>

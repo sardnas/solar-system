@@ -14,7 +14,7 @@ export async function GetOrbitsByPlanetName(planetname) {
 
 const publishedBasePath = 'https://';
 //emil 44364
-const localBasePath = 'https://localhost:44364';
+const localBasePath = 'https://localhost:7087';
 
 let requestBasePath = null;
 
@@ -33,3 +33,4 @@ export function GetBasePath() {
 
   return requestBasePath;
 }
+//
