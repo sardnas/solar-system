@@ -7,7 +7,6 @@ export const InfoBox = (data) => {
     const [active, setActive] = useState(false);
     const [activeSatellite, setActiveSatellite] = useState();
     const handleOnClick = (satellite) => {
-        console.log(satellite);
         setActiveSatellite([satellite.name, satellite.gravity, satellite.mass]);
         if (!active) {
             setActive(true);

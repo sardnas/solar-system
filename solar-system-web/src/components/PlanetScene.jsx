@@ -10,6 +10,7 @@ import saturn from '../img/saturn.jpg';
 import uranus from '../img/uranus.jpg';
 import venus from '../img/venus.jpg';
 import { FixedBody } from './FixedBody';
+import { InfoBox } from './InfoBox';
 
 export const PlanetScene = ({ data }) => {
   const sun = new Object();
