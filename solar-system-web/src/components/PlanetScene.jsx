@@ -47,7 +47,7 @@ export const PlanetScene = ({ data }) => {
 
   return (
     <>
-      <Canvas>
+      <Canvas camera={{ position: [0, 40, 35], fov: 60 }}>
         <CameraOrbitController />
         <ambientLight intensity={1} />
         <pointLight position={[0, 0, 0]} intensity={4} />
