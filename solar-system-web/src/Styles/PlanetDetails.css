@@ -21,3 +21,14 @@ body {
   top: 90%;
   right: 90%;
 }
+
+.home-btn {
+  width: 35px;
+  height: 35px;
+  margin: 8px;
+}
+
+.home-btn:hover {
+  color: rosybrown;
+  scale: 1.2;
+}

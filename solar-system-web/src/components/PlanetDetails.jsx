@@ -7,16 +7,19 @@ import moonTexture1 from '../img/moonRed.jpg';
 import moonTexture2 from '../img/moonBlue.jpg';
 import marsTexture from '../img/mars.jpg';
 import '../Styles/PlanetDetails.css';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { GetOrbitsByPlanetName } from '../Api';
 import { OrbitFactory } from '../utils/OrbitDataFactory';
 import { textures as PlanetTextures } from '../utils/Textures';
 import { Html } from '@react-three/drei';
+import { AiOutlineHome } from 'react-icons/ai';
 
 export default function PlanetDetails() {
   const moonText = [moonTexture, moonTexture1, moonTexture2];
   const params = useParams();
+  const navigate = useNavigate();
+  const backToHome = () => navigate('/');
   const [orbitData, setOrbitData] = useState(null);
   const [planetData, setPlanetData] = useState([]);
   const planetName = params.Name;
@@ -35,6 +38,7 @@ export default function PlanetDetails() {
 
   return (
     <>
+      <AiOutlineHome className='home-btn' onClick={backToHome} />
       <Canvas camera={{ position: [0, 20, 25], fov: 45 }}>
         <Suspense fallback={null}>
           <MainPlanet
