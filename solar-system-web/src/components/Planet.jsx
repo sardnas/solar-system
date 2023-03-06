@@ -6,6 +6,41 @@ import '../Styles/Planet.css';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import texture2 from '../img/sun.jpg';
+import * as THREE from 'three';
+
+//Color needs to be update preferably with increased opacity
+function PlaneColor(key) {
+  var dictionary = {
+    Mercury: '#393e46',
+    Venus: '#ba6f13',
+    Earth: '#2b75e3',
+    Mars: '#b34100',
+    Jupiter: '#fabc98',
+    Saturn: '#393e46',
+    Uranus: '#8ad4ff',
+    Neptune: '#0077ff',
+  };
+  return dictionary[key];
+}
+
+function EclipticPlane({ xRadius = 1, zRadius = 1, color }) {
+  const points = [];
+  for (let index = 0; index < 64; index++) {
+    const angle = (index / 64) * 2 * Math.PI;
+    const x = xRadius * Math.cos(angle);
+    const z = zRadius * Math.sin(angle);
+    points.push(new THREE.Vector3(x, 0, z));
+  }
+
+  points.push(points[0]);
+
+  const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
+  return (
+    <line geometry={lineGeometry}>
+      <lineBasicMaterial attach='material' color={color} linewidth={10} />
+    </line>
+  );
+}
 
 export const Planet = ({
   texture,
@@ -25,6 +60,7 @@ export const Planet = ({
   const colorMapHover = useLoader(TextureLoader, texture2);
   const [hovered, setHover] = useState(false);
   const [active, setActive] = useState(false);
+  const EclipticPlaneColor = PlaneColor(planet.name);
 
   cookies.set(`${planet.name}Info`, planet, {
     path: '/',
@@ -66,6 +102,11 @@ export const Planet = ({
         <sphereGeometry args={[size]} />
         <meshStandardMaterial map={hovered ? colorMapHover : colorMap} />
       </mesh>
+      <EclipticPlane
+        color={EclipticPlaneColor}
+        xRadius={xRadius}
+        zRadius={zRadius}
+      />
     </>
   );
 };
