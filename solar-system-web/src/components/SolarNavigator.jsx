@@ -2,6 +2,7 @@ import '../Styles/SolarNavigator.css';
 import { GetPlanets } from '../Api';
 import { useState, useEffect } from 'react';
 import { PlanetScene } from './PlanetScene';
+import { RingLoader } from "react-spinners";
 
 export const SolarNavigator = () => {
     const [shouldFetchPlanets, setShouldFetchPlanets] = useState(true);
@@ -46,7 +47,9 @@ export const SolarNavigator = () => {
                     </div>
                 </>
             ) : (
-                <h1>loading planets</h1>
+                <div className='loader'>
+                    <RingLoader color="#7090ff" />
+                </div>
             )}
         </>
     );
