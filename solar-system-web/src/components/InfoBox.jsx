@@ -3,7 +3,9 @@ import '../Styles/InfoBox.css';
 import { Scrollbar } from 'react-scrollbars-custom';
 
 export const InfoBox = (data) => {
-    console.log(data.planet);
+    const handleOnClick = () => {
+        console.log(data.planet);
+    }
     return (
         <>
             <div className='outerBox'>
@@ -14,7 +16,7 @@ export const InfoBox = (data) => {
                     <p>Radius: {data.planet.meanRadius}</p>
                     <p>Mass: {data.planet.massKg} kg</p>
                     <p>Satellites: {data.satellites.length}</p>
-                    {data.satellites.map(element => { return (<div>{element.name}</div>); })}
+                    {data.satellites.map(element => { return (<div onClick={handleOnClick}>{element.name}</div>); })}
                 </Scrollbar>
             </div>
         </>

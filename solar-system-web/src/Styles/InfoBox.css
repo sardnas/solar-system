@@ -1,6 +1,6 @@
 .outerBox {
-    background-color: #03001C;
-    color: #B6EADA;
+    background-color: rgba(128, 128, 128, 0.418);
+    color: white;
     border-radius: 1rem;
     width: 17rem;
     max-height: 40%;
@@ -14,3 +14,5 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     z-index: 1000;
 }
+
+.satelliteInfo {}
