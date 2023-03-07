@@ -3,8 +3,10 @@ import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import { CameraOrbitController } from './CameraOrbitController';
 import * as THREE from 'three';
 import moonTexture from '../img/moon.jpg';
-import moonTexture1 from '../img/moonRed.jpg';
-import moonTexture2 from '../img/moonBlue.jpg';
+import moonTexture1 from '../img/moon1.jpg';
+import moonTexture2 from '../img/moon2.jpg';
+import moonTexture3 from '../img/moon3.jpg';
+import moonTexture4 from '../img/moon4.jpg';
 import marsTexture from '../img/mars.jpg';
 import '../Styles/PlanetDetails.css';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -19,7 +21,13 @@ import { InfoBox } from './InfoBox';
 
 export default function PlanetDetails() {
   const cookies = new Cookies();
-  const moonText = [moonTexture, moonTexture1, moonTexture2];
+  const moonText = [
+    moonTexture,
+    moonTexture1,
+    moonTexture2,
+    moonTexture3,
+    moonTexture4,
+  ];
   const params = useParams();
   const navigate = useNavigate();
   const backToHome = () => navigate('/');
@@ -63,7 +71,7 @@ export default function PlanetDetails() {
               speed={p.speed / 3}
               offset={p.offset}
               rotationSpeed={p.rotationSpeed}
-              textureMap={moonText[Math.round(Math.random() * 2)]}
+              textureMap={moonText[Math.floor(Math.random() * 5)]}
               name={p.name}
             />
           ))}

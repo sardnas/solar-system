@@ -1,7 +1,7 @@
 import { useFrame, useLoader } from '@react-three/fiber';
 import React, { useRef, useState } from 'react';
 import { TextureLoader } from 'three';
-import { FlyControls, Html } from '@react-three/drei';
+import { Html } from '@react-three/drei';
 import '../Styles/Planet.css';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie';

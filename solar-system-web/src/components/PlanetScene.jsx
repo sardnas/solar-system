@@ -9,6 +9,7 @@ import neptune from '../img/neptune.jpg';
 import saturn from '../img/saturn.jpg';
 import uranus from '../img/uranus.jpg';
 import venus from '../img/venus.jpg';
+import sunTxt from '../img/sun.jpg';
 import { FixedBody } from './FixedBody';
 import { InfoBox } from './InfoBox';
 
@@ -84,7 +85,7 @@ export const PlanetScene = ({ data }) => {
         <CameraOrbitController />
         <ambientLight intensity={1} />
         <pointLight position={[0, 0, 0]} intensity={4} />
-        <FixedBody texture={venus} pos={[0, 0, 0]} size={2.2} />
+        <FixedBody texture={sunTxt} pos={[0, 0, 0]} size={2.2} />
         {data.map((element, i) => {
           return (
             <Planet
@@ -94,7 +95,7 @@ export const PlanetScene = ({ data }) => {
               size={element.size}
               planet={element}
               speed={((Math.random() * (1 - 0.02) + 1) / element.zRadius) * 3}
-              rotationSpeed={Math.random() * (0.03 - 0.01) + 0.03}
+              rotationSpeed={Math.random() * (0.015 - 0.01) + 0.015}
               xRadius={element.xRadius}
               zRadius={element.zRadius}
               offset={Math.random() * (2 * Math.PI - 0 + 2 * Math.PI)}

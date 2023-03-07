@@ -1,31 +1,38 @@
 .spaceContainer {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    grid-auto-rows: minmax(10rem, auto);
-    width: 75%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  grid-auto-rows: minmax(10rem, auto);
+  width: 75%;
 }
 
 .planetHolder {
-    width: 10rem;
-    block-size: fit-content;
+  width: 10rem;
+  block-size: fit-content;
 }
 
 .screen {
-    background-color: black;
-    height: 100%;
-    overflow: visible;
+  background-color: black;
+  height: 100%;
+  overflow: visible;
 }
 
 .loader {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    padding-top: 30%;
-    align-items: center;
-    text-align: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  padding-top: 30%;
+  align-items: center;
+  text-align: center;
+}
+
+.info-txt {
+  padding: 5px;
+  text-align: justify;
+  text-justify: inter-word;
+  text-align: center;
 }
