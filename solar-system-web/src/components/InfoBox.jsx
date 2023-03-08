@@ -37,10 +37,12 @@ export const InfoBox = (data) => {
       </div>
       {active ? (
         <>
-          <div onClick={() => setActive(false)} className='satelliteBox'>
-            <h1>{activeSatellite[0]}</h1>
-            <p>Mass: {activeSatellite[2]} kg</p>
-            <p>Gravity: {activeSatellite[1]}</p>
+          <div onClick={() => setActive(!active)} className='satelliteBox'>
+            <Scrollbar style={{ width: '100%', height: '100%' }}>
+              <h1>{activeSatellite[0]}</h1>
+              <p>Mass: {activeSatellite[2]} kg</p>
+              <p>Gravity: {activeSatellite[1]}</p>
+            </Scrollbar>
           </div>
         </>
       ) : (
